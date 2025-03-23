@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Balu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffae5; /* Color pastel */
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        .producto {
+            border: 2px solid #ff7f7f; /* Rojo pastel */
+            background: #a7e9af; /* Verde pastel */
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px;
+            display: inline-block;
+            width: 250px;
+        }
+        .producto img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .producto h3 {
+            color: #ffb74d; /* Amarillo pastel */
+        }
+        .producto p {
+            color: #64b5f6; /* Azul pastel */
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #64b5f6; /* Azul pastel */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #42a5f5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenidos a Tienda Balu</h1>
+    <div class="container">
+        {% for producto in productos %}
+            <div class="producto">
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                <h3>{{ producto.nombre }}</h3>
+                <p>{{ producto.descripcion }}</p>
+                <p><strong>S/ {{ producto.precio }}</strong></p>
+                <a href="{% url 'carrito:agregar_al_carrito' producto.id %}" class="btn">Añadir al Carrito</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        <a href="{% url 'carrito:ver_carrito' %}" class="btn">Ver Carrito</a>
+    </div>
+</body>
+</html>
